@@ -10,7 +10,7 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: 
-// 640 * 480 * 60
+// 640x480x60Hz Resolution
 // Dependencies: 
 // 
 // Revision:
@@ -23,20 +23,20 @@
 module VGA_INTERFACE
 #(
 	parameter
-		WIDTH_COLOR = 4'd12;
-		WIDTH_POS   = 4'd10;
-);
+		WIDTH_COLOR = 4'd12,	// basys3 uses 12bit per pixel
+		WIDTH_POS   = 4'd10	// width of position
+)
 (
 	input rst_n,
 	input pixel_clk,
 	input [WIDTH_COLOR-1:0] color,
 	output [WIDTH_POS-1:0] xpos, ypos,
-	output hsync, vsync
-	output [WIDTH_COLOR/3-1:0] red, green, blue,
+	output hsync, vsync,
+	output [WIDTH_COLOR/3-1:0] red, green, blue
 );
 
 	VGA_CONTROLLER vc0 (
-		.rst_n(rst_n)
+		.rst_n(rst_n),
 		.pixel_clk(pixel_clk),
 		.xpos(xpos),
 		.ypos(ypos),
