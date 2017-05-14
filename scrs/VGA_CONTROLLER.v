@@ -14,7 +14,7 @@ module VGA_CONTROLLER
 		T_BP_H   = 10'd144,
 		T_DISP_H = 10'd784,
 		T_FP_H   = 10'd800,
-		WIDTH    = 4'd10;	// width of counters
+		WIDTH    = 4'd10	// width of counters
 )
 (
 	input rst_n,
