@@ -14,7 +14,7 @@ module VGA_CONTROLLER
 		T_BP_H   = 10'd144,
 		T_DISP_H = 10'd784,
 		T_FP_H   = 10'd800,
-		WIDTH    = 4'd10	// width of counters
+		WIDTH    = 4'd10	// width of counters/positions
 )
 (
 	input rst_n,
@@ -66,12 +66,23 @@ module VGA_CONTROLLER
 
 	// next position logic
 	always @(*) begin
+		
+		// next position of x
 		if (hsync && next_hcounter>T_BP_H && next_hcounter<=T_DISP_H) begin
 			next_xpos = next_hcounter - T_BP_H - 1;
 		end
+		else begin
+			next_xpos = {WIDTH{1'b0}};
+		end
+
+		// next position of y
 		if (vsync && next_vcounter>T_BP_V && next_vcounter<=T_DISP_V) begin
 			next_ypos = next_vcounter - T_BP_V - 1;
 		end
+		else begin
+			next_ypos = {WIDTH{1'b0}};
+		end
+		
 	end
 
 
