@@ -23,7 +23,7 @@
 module VGA_INTERFACE
 #(
 	parameter
-		WIDTH_COLOR = 4'd12,	// basys3 uses 12bit per pixel
+		WIDTH_COLOR = 4'd12,	// basys3 uses 12bit per pixel, must be a multiple of three
 		WIDTH_POS   = 4'd10	// width of position
 )
 (
@@ -32,20 +32,21 @@ module VGA_INTERFACE
 	input [WIDTH_COLOR-1:0] color,
 	output [WIDTH_POS-1:0] xpos, ypos,
 	output hsync, vsync,
+	output en_color,
 	output [WIDTH_COLOR/3-1:0] red, green, blue
 );
+
 
 	VGA_CONTROLLER vc0 (
 		.rst_n(rst_n),
 		.pixel_clk(pixel_clk),
+		.en_color(en_color),
 		.xpos(xpos),
 		.ypos(ypos),
 		.hsync(hsync),
 		.vsync(vsync)
 		);
 
-	assign red   = color [WIDTH_COLOR-1:WIDTH_COLOR/3*2-1];
-	assign green = color [WIDTH_COLOR/3*2-1:WIDTH_COLOR/3-1];
-	assign blue  = color [WIDTH_COLOR/3-1:0];
+	assign { red, green, blue } = en_color ? color : { WIDTH_COLOR{1'b0} } ;
 
 endmodule
