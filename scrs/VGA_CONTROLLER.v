@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 // Note: 
-// 1. requiring image memory with delay of 0 clocks
+// 1. requiring image memory with delay that is less than 1 pixel_clocks
 
 module VGA_CONTROLLER
 # (
