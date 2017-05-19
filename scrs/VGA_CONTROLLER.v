@@ -2,6 +2,7 @@
 
 // Note: 
 // 1. requiring image memory with delay that is less than 1 pixel_clocks
+// 2. xpos range from 0 to 640; ypos range from 0 to 480
 
 module VGA_CONTROLLER
 # (
