@@ -130,8 +130,8 @@ module TOP_TEST
         .clk_in1            (clk_s),
         .reset              (reset_cw0),
         .clk_out1           (pixel_clk),  // 25MHz
-        .clk_out2           (clk),        // 200MHz
-        .clk_out3           (clk_debug),  // 400MHz
+        .clk_out2           (clk),        // 100MHz
+        .clk_out3           (clk_debug),  // 200MHz
         .locked             (locked_cw0)
         );
     assign reset_cw0 = 1'b0;
